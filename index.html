@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Adrian Encminger – Inżynier automatyk</title> <!-- ZMIEŃ TYTUŁ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio i wizytówka – automatyk, programista, inżynier."> <!-- OPIS SEO -->
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-alt: #111729;
+            --accent: #3fb8ff;
+            --accent-soft: rgba(63, 184, 255, 0.15);
+            --text: #f5f7ff;
+            --muted: #9aa4c6;
+            --card: #151b2f;
+            --border: #252c45;
+            --danger: #ff6b6b;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --radius: 10px;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background: radial-gradient(circle at top, #1b2640 0, #050814 55%, #02030a 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 64px;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 20%, #3fb8ff, #3f7bff 40%, #111729 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .brand-role {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 14px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            border-color: var(--accent-soft);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .hero-main {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.85));
+            border-radius: 18px;
+            padding: 24px 22px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-main::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0 0, rgba(63, 184, 255, 0.18), transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(111, 66, 193, 0.18), transparent 55%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .hero-tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(63, 184, 255, 0.9);
+        }
+
+        .hero-title {
+            font-size: 28px;
+            margin: 0 0 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .hero-meta-item {
+            font-size: 13px;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .hero-meta-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            border-radius: 999px;
+            border: none;
+            padding: 9px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(135deg, #3fb8ff, #3f7bff);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(63, 123, 255, 0.45);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.05);
+        }
+
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--muted);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.96);
+            border-radius: 16px;
+            padding: 16px 16px 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .pill {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--muted);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .skill-item-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .skill-item-value {
+            font-size: 13px;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .timeline-role {
+            font-weight: 500;
+        }
+
+        .timeline-meta {
+            font-size: 12px;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: var(--card);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+
+        .project-image-wrapper {
+            position: relative;
+            padding-top: 60%;
+            background: radial-gradient(circle at top, rgba(63, 184, 255, 0.25), transparent 60%);
+            overflow: hidden;
+        }
+
+        .project-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.1);
+        }
+
+        .project-body {
+            padding: 10px 12px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .project-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--muted);
+        }
+
+        .project-link {
+            margin-top: 4px;
+            font-size: 12px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 20px;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .list li {
+            margin-bottom: 6px;
+            color: var(--muted);
+        }
+
+        .list strong {
+            color: var(--text);
+        }
+
+        .contact-card {
+            background: var(--card);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 14px 14px 12px;
+            font-size: 14px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .contact-label {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .contact-value {
+            text-align: right;
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .two-col {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .projects-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-main {
+                padding: 18px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- GÓRNY PASEK / NAGŁÓWEK -->
+    <header>
+        <div class="brand">
+            <div class="brand-logo">
+                <!-- WSTAW INICJAŁY -->
+                AE
+            </div>
+            <div class="brand-text">
+                <div class="brand-name">
+                    <!-- IMIĘ I NAZWISKO -->
+                    Adrian Encminger
+                </div>
+                <div class="brand-role">
+                    <!-- KRÓTKA ROLA / SPECJALIZACJA -->
+                    Automatyk przemysłowy · Programista · Inżynier
+                </div>
+            </div>
+        </div>
+        <nav>
+            <!-- LINKI NAWIGACYJNE DO SEKCJI -->
+            <a href="#o-mnie">O mnie</a>
+            <a href="#projekty">Projekty</a>
+            <a href="#umiejetnosci">Umiejętności</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <!-- SEKCJA HERO / GŁÓWNA WIZYTÓWKA -->
+    <section class="hero">
+        <div class="hero-main">
+            <div class="hero-content">
+		
+                <h1 class="hero-title">
+                    <!-- GŁÓWNY NAGŁÓWEK -->
+                    Inżynier automatyk, projektant i programista systemów przemysłowych oraz wbudowanych
+                </h1>
+                <p class="hero-subtitle">
+                    <!-- KRÓTKI OPIS PROFILU -->
+                    Projektuję, tworzę oraz programuję i uruchamiam systemy automatyki. Programuję sterowniki PLC, panele HMI oraz piszę aplikacje w Pythonie i C/C++.
+                </p>
+
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-dot"></span>
+                        <!-- LATA DOŚWIADCZENIA -->
+                        16 lat doświadczenia w automatyce przemysłowej
+                    </div>
+                    <div class="hero-meta-item">
+                        <!-- SPECJALIZACJE KLUCZOWE -->
+                        PLC · HMI · SCADA · Napędy · EPLAN · Prefabrykacja szaf sterowniczych · FreeCAD · Druk 3D · Python · AVR · RaspberryPI · AI
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <!-- PRZYCISK DO SEKCJI PROJEKTÓW -->
+                    <button class="btn-primary" onclick="document.getElementById('projekty').scrollIntoView({behavior: 'smooth'})">
+                        Zobacz wybrane projekty
+                    </button>
+                    <!-- PRZYCISK DO KONTAKTU -->
+                    <button class="btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior: 'smooth'})">
+                        Skontaktuj się ze mną
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRAWY BOK: SKRÓT UMIEJĘTNOŚCI / DOŚWIADCZENIA -->
+        <div class="hero-side">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Profil techniczny</div>
+                        <div class="card-subtitle">Automatyka · Robotyka · Software</div>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div>
+                        <div class="skill-item-label">Sterowniki PLC</div>
+                        <div class="skill-item-value">
+                            <!-- WSTAW KONKRETNE PLATFORMY -->
+                            Siemens, Delta, Mitsubishi
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-item-label">Języki</div>
+                        <div class="skill-item-value">
+                            <!-- JĘZYKI PROGRAMOWANIA -->
+                            Python, C/C++, LAD, FBD
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-item-label">Komunikacja</div>
+                        <div class="skill-item-value">
+                            <!-- PROTOKOŁY / STANDARDY -->
+                            Modbus, Profinet, EtherCAT
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-item-label">Systemy wbudowane</div>
+                        <div class="skill-item-value">
+                            <!-- SYSTEMY WBUDOWANE  -->
+                            Raspberry Pi, AVR, STM32
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Doświadczenie</div>
+                        <div class="card-subtitle">Wybrane role</div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <!-- POWTÓRZ / DOSTOSUJ ELEMENTY TIMELINE -->
+                    <div class="timeline-item">
+                        <div>
+                            <div class="timeline-role">
+                                <!-- STANOWISKO -->
+                                Inżynier Automatyk
+                            </div>
+                            <div class="card-subtitle">
+                                <!-- FIRMA / BRANŻA -->
+                                Utrzymanie ruchu w Polipak
+                            </div>
+                        </div>
+                        <div class="timeline-meta">
+                            <!-- LATA -->
+                            2022 – obecnie
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div>
+                            <div class="timeline-role">
+                                Inżynier Automatyk
+                            </div>
+                            <div class="card-subtitle">
+				Działalność w inkubatorze równolegle z pracą na etacie                                
+                            </div>
+                        </div>
+                        <div class="timeline-meta">
+                            2020 – 2025
+                        </div>
+                    </div>
+		    <div class="timeline-item">
+                        <div>
+                            <div class="timeline-role">
+                                <!-- STANOWISKO -->
+                                Inżynier Elektronik
+                            </div>
+                            <div class="card-subtitle">
+                                <!-- FIRMA / BRANŻA -->
+                                Dział Inżynierii w Twinings
+                            </div>
+                        </div>
+                        <div class="timeline-meta">
+                            <!-- LATA -->
+                            2015 – 2022
+                        </div>
+                    </div>
+		    <div class="timeline-item">
+                        <div>
+                            <div class="timeline-role">
+                                <!-- STANOWISKO -->
+                                Asystent Inżynier
+                            </div>
+                            <div class="card-subtitle">
+                                <!-- FIRMA / BRANŻA -->
+                                Utrzymanie ruchu w Philips
+                            </div>
+                        </div>
+                        <div class="timeline-meta">
+                            <!-- LATA -->
+                            2012 – 2015
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCJA O MNIE -->
+    <section id="o-mnie" class="section">
+        <div class="section-header">
+            <div class="section-title">O mnie</div>
+        </div>
+        <div class="two-col">
+            <div>
+                <!-- OPIS O SOBIE – ZMIEŃ NA SWÓJ TEKST -->
+                <p style="text-indent: 30px;"> 
+                    Jestem inżynierem z bogatym doświadczeniem w branży automatyki. Łączę świat maszyn z oprogramowaniem. Wieloletnie doświadczenie w 			    strukturach UR pozwala mi naprawić awarię szybciej niż IT rozwiązuje problem z drukarką. Potrafię zidentyfikować problem po samym 			    „dziwnym dźwięku”. Mam cierpliwość do kabli, które potrafią się splątać, nawet gdy nikt ich nie dotykał. Nie wierzę w mity, że 			    wtyczka sama się odłączyła. Znam angielski na tyle dobrze, żeby zrozumieć mema technicznego.
+                </p>
+                <p style="text-indent: 30px;">
+		    Posiadam kilkuletnie doświadczenie w kierowaniu zespołem automatyków. Jestem osobą dobrze zorganizowaną i cechującą się
+		    dużym zaangażowaniem w realizacji powierzonych mu zadań – zawsze na 100%. Potrafię zaprojektować układ dedykowany do aplikacji, a 			    następnie narysować profesjonalny schemat. Prefabrykacja szaf sterowniczych jest dla mnie formą odprężenia. Nie jest mi obca praca 			    elektromontera, gdy należy przygotować trasy kablowe i położyć odpowiednią ilość przewodów. Programowanie sprawia mi dużą 				    przyjemność. Znam kilka środowisk i kilka języków programowania. Lubię projekty, w których można wykorzystać najnowsze technologie.
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- SEKCJA PROJEKTY -->
+    <section id="projekty" class="section">
+        <div class="section-header">
+            <div class="section-title">Wybrane projekty</div>
+        </div>
+
+        <div class="projects-grid">
+            <!-- PROJEKT 1 -->
+            <article class="project-card">
+                <div class="project-image-wrapper">
+                    <!-- PODMIEŃ SRC NA SWOJE ZDJĘCIE / RYSUNEK PROJEKTU -->
+                    <img class="project-image" src="images/projekt1.jpg" alt="Wymiana sterowania - cięcie rolek">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">
+                        <!-- NAZWA PROJEKTU -->
+                        Maszyna do cięcia rolek z czyściwem
+                    </div>
+                    <div class="project-meta">
+                        <!-- KRÓTKI OPIS -->
+                        Prefabrykacja szafy sterowniczej zgodnie z projektem. Montaż końcowy i uruchomienie u klienta.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Delta</span>
+                        <span class="tag">EPLAN</span>
+                        <span class="tag">Siemens</span>
+			<span class="tag">Prefabrykacja</span>
+                    </div>
+                    <!-- OPCJONALNY LINK DO GITA / OPISU -->
+                    <!-- <div class="project-link"><a href="https://github.com/twoj-projekt" target="_blank">Repozytorium</a></div> -->
+                </div>
+            </article>
+
+            <!-- PROJEKT 2 -->
+            <article class="project-card">
+                <div class="project-image-wrapper">
+                    <img class="project-image" src="images/projekt2.jpg" alt="Wymiana sterowania - automatyczna owijarka palet">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Automatyczna owijarka palet w ciągu transporterów rolkowych
+                    </div>
+                    <div class="project-meta">
+                        Wykonanie projektu oraz prefabrykacja szafek i montaż końcowy na obiekcie. Wykorzystano mobuł Bluetooth do komunikacji między szafkami. Integracja  z systemem transporterów rolkowych oraz robotem Fanuc.
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Siemens</span>
+                        <span class="tag">Bluetooth</span>
+                        <span class="tag">EPLAN</span>
+			<span class="tag">Prefabrykacja</span>
+
+                    </div>
+                </div>
+            </article>
+
+            <!-- PROJEKT 3 -->
+            <article class="project-card">
+                <div class="project-image-wrapper">
+                    <img class="project-image" src="images/projekt3.jpg" alt="Robot kroczący">
+                </div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Projekt i wykonanie czteronożnego robota kroczącego
+                    </div>
+                    <div class="project-meta">
+                        Projekt i wykonanie czteronożnego robota kroczącego z zaimplementowaną kinematyką odwrotną. Komunikacja z PC za pomocą Bluetooth. PCB zaprojektowane w programie Eagle. Sterowanie na 2 mikrokontrolerach 8 bitowych.                    </div>
+                    <div class="project-tags">
+                        <span class="tag">AVR</span>
+                        <span class="tag">Bluetooth</span>
+                        <span class="tag">C/C++</span>
+			<span class="tag">Eagle</span>
+			<span class="tag">Kinematyka odwrotna</span>
+			<span class="tag">Inventor</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SEKCJA UMIEJĘTNOŚCI -->
+    <section id="umiejetnosci" class="section">
+        <div class="section-header">
+            <div class="section-title">Umiejętności</div>
+            <div class="section-title">Kursy</div>
+        </div>
+        <div class="two-col">
+
+		<div class="hero-meta">
+                    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Znajomość obsługi oraz programowania sterowników PLC i paneli HMI oraz systemów SCADA</div>
+                    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Znajomość oprogramowania Eplan, CAD, MS Office, SAP, CMMS</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Umiejętność czytania rysunku technicznego oraz schematów elektrycznych</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Znajomość HACCP, TPM, Kazien, 5s, SMED, Poka Yoke, druk 3D</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Znajomość zagadnień elektroniki cyfrowej i analogowej oraz programowania mikrokontrolerów AVR i STM32 oraz platformy Raspberry PI</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Znajomość języków programowania wysokiego poziomu</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>SEP do 1kV oraz powyżej 1kV – Eksploatacja i Dozór</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Obsługa podestów ruchomych</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Prawo jazdy kat. B</div>
+                </div>
+
+		<div class="hero-meta">
+                    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Obsługa i programowanie sterowników PLC oraz systemu SCADA firmy SIEMENS</div>
+                    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Obsługa i programowanie sterowników PLC oraz paneli HMI firmy Mitsubishi</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>Obsługa i parametryzacja falowników MOVIDRIVE firmy SEW</div>
+		    <div class="hero-meta-item"><span class="hero-meta-dot"></span>AI dla programistów</div>
+		</div>
+
+       </div>
+    </section>
+
+    <!-- SEKCJA KONTAKT -->
+    <section id="kontakt" class="section">
+        <div class="section-header">
+            <div class="section-title">Kontakt</div>
+        </div>
+        <div class="two-col">
+            <div class="contact-card">
+                <div class="contact-row">
+                    <div class="contact-label">E-mail</div>
+                    <div class="contact-value">
+                        <!-- WSTAW SWÓJ E-MAIL -->
+                        <a href="mailto:adrian.encminger@gmail.com">adrian.encminger@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">Telefon</div>
+                    <div class="contact-value">
+                        <!-- WSTAW SWÓJ NUMER -->
+                        +48 690 599 446
+                    </div>
+                </div>
+               </div>
+        </div>
+    </section>
+
+    <footer>
+        <!-- STOPKA – MOŻESZ ZMIENIĆ LUB USUNĄĆ -->
+        © <span id="year"></span> Adrian Encminger – inżynier automatyk
+    </footer>
+</div>
+
+<script>
+    // Automatyczne ustawienie bieżącego roku w stopce
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
